@@ -1,0 +1,22 @@
+[
+  {
+    "title": "ID",
+    "dataIndex": "id",
+    "key": "id"
+  },
+  {
+    "title": "Код",
+    "dataIndex": "code",
+    "key": "code"
+  },
+  {
+    "title": "Заголовок",
+    "dataIndex": "title",
+    "key": "title"
+  },
+  {
+    "title": "Описание",
+    "dataIndex": "description",
+    "key": "description"
+  }
+]

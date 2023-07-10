@@ -1,22 +1,22 @@
 [
-	{
-		"value": "NEW",
-		"label": "Новый"
-	},
-	{
-		"value": "APPROVED",
-		"label": "Одобренный"
-	},
-	{
-		"value": "IN_WORK",
-		"label": "В работе"
-	},
-	{
-		"value": "COMPLETED",
-		"label": "Завершенный"
-	},
-	{
-		"value": "СANCELED",
-		"label": "Отмененный"
-	}
+  {
+    "value": "NEW",
+    "label": "Новый"
+  },
+  {
+    "value": "APPROVED",
+    "label": "Одобренный"
+  },
+  {
+    "value": "IN_WORK",
+    "label": "В работе"
+  },
+  {
+    "value": "COMPLETED",
+    "label": "Завершенный"
+  },
+  {
+    "value": "СANCELED",
+    "label": "Отмененный"
+  }
 ]

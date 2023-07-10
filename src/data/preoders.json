@@ -5,7 +5,10 @@
     "preorderTypeId": 1,
     "configurationId": 1,
     "environmentId": 1,
-    "datacenterIds": [1, 2],
+    "datacenterIds": [
+      1,
+      2
+    ],
     "isReplication": false,
     "status": "NEW"
   },
@@ -15,7 +18,10 @@
     "preorderTypeId": 1,
     "configurationId": 2,
     "environmentId": 2,
-    "datacenterIds": [2, 3],
+    "datacenterIds": [
+      2,
+      3
+    ],
     "isReplication": false,
     "status": "APPROVED"
   },
@@ -25,7 +31,10 @@
     "preorderTypeId": 1,
     "configurationId": 3,
     "environmentId": 3,
-    "datacenterIds": [2, 3],
+    "datacenterIds": [
+      2,
+      3
+    ],
     "isReplication": false,
     "status": "IN_WORK"
   },
@@ -35,7 +44,9 @@
     "preorderTypeId": 1,
     "configurationId": 1,
     "environmentId": 1,
-    "datacenterIds": [6],
+    "datacenterIds": [
+      6
+    ],
     "isReplication": false,
     "status": "COMPLETED"
   },
@@ -45,7 +56,9 @@
     "preorderTypeId": 1,
     "configurationId": 2,
     "environmentId": 2,
-    "datacenterIds": [5],
+    "datacenterIds": [
+      5
+    ],
     "isReplication": false,
     "status": "СANCELED"
   },
@@ -55,7 +68,10 @@
     "preorderTypeId": 1,
     "configurationId": 3,
     "environmentId": 3,
-    "datacenterIds": [7, 8],
+    "datacenterIds": [
+      7,
+      8
+    ],
     "isReplication": false,
     "status": "NEW"
   },
@@ -65,7 +81,10 @@
     "preorderTypeId": 1,
     "configurationId": 1,
     "environmentId": 4,
-    "datacenterIds": [3, 4],
+    "datacenterIds": [
+      3,
+      4
+    ],
     "isReplication": false,
     "status": "APPROVED"
   },
@@ -75,7 +94,10 @@
     "preorderTypeId": 1,
     "configurationId": 2,
     "environmentId": 1,
-    "datacenterIds": [2,4],
+    "datacenterIds": [
+      2,
+      4
+    ],
     "isReplication": false,
     "status": "IN_WORK"
   },
@@ -85,7 +107,10 @@
     "preorderTypeId": 2,
     "configurationId": null,
     "environmentId": 1,
-    "datacenterIds": [2, 3],
+    "datacenterIds": [
+      2,
+      3
+    ],
     "isReplication": true,
     "status": "NEW"
   },
@@ -95,7 +120,10 @@
     "preorderTypeId": 2,
     "configurationId": null,
     "environmentId": 2,
-    "datacenterIds": [1, 3],
+    "datacenterIds": [
+      1,
+      3
+    ],
     "isReplication": false,
     "status": "APPROVED"
   },
@@ -105,7 +133,10 @@
     "preorderTypeId": 2,
     "configurationId": null,
     "environmentId": 3,
-    "datacenterIds": [2, 3],
+    "datacenterIds": [
+      2,
+      3
+    ],
     "isReplication": true,
     "status": "IN_WORK"
   },
@@ -115,7 +146,9 @@
     "preorderTypeId": 2,
     "configurationId": null,
     "environmentId": 1,
-    "datacenterIds": [4],
+    "datacenterIds": [
+      4
+    ],
     "isReplication": false,
     "status": "COMPLETED"
   },
@@ -125,7 +158,9 @@
     "preorderTypeId": 2,
     "configurationId": null,
     "environmentId": 2,
-    "datacenterIds": [5],
+    "datacenterIds": [
+      5
+    ],
     "isReplication": false,
     "status": "СANCELED"
   },
@@ -135,7 +170,9 @@
     "preorderTypeId": 2,
     "configurationId": null,
     "environmentId": 3,
-    "datacenterIds": [6],
+    "datacenterIds": [
+      6
+    ],
     "isReplication": false,
     "status": "NEW"
   },
@@ -145,7 +182,10 @@
     "preorderTypeId": 2,
     "configurationId": null,
     "environmentId": 4,
-    "datacenterIds": [3, 4],
+    "datacenterIds": [
+      3,
+      4
+    ],
     "isReplication": true,
     "status": "APPROVED"
   },
@@ -155,7 +195,10 @@
     "preorderTypeId": 3,
     "configurationId": null,
     "environmentId": 1,
-    "datacenterIds": [2, 3],
+    "datacenterIds": [
+      2,
+      3
+    ],
     "isReplication": false,
     "status": "NEW"
   },
@@ -165,7 +208,10 @@
     "preorderTypeId": 3,
     "configurationId": null,
     "environmentId": 2,
-    "datacenterIds": [1, 3],
+    "datacenterIds": [
+      1,
+      3
+    ],
     "isReplication": false,
     "status": "APPROVED"
   },
@@ -175,7 +221,10 @@
     "preorderTypeId": 3,
     "configurationId": null,
     "environmentId": 3,
-    "datacenterIds": [7, 8],
+    "datacenterIds": [
+      7,
+      8
+    ],
     "isReplication": false,
     "status": "IN_WORK"
   },
@@ -185,7 +234,9 @@
     "preorderTypeId": 3,
     "configurationId": null,
     "environmentId": 1,
-    "datacenterIds": [4],
+    "datacenterIds": [
+      4
+    ],
     "isReplication": false,
     "status": "COMPLETED"
   },
@@ -195,7 +246,9 @@
     "preorderTypeId": 3,
     "configurationId": null,
     "environmentId": 2,
-    "datacenterIds": [5],
+    "datacenterIds": [
+      5
+    ],
     "isReplication": false,
     "status": "СANCELED"
   },
@@ -205,7 +258,9 @@
     "preorderTypeId": 3,
     "configurationId": null,
     "environmentId": 3,
-    "datacenterIds": [8],
+    "datacenterIds": [
+      8
+    ],
     "isReplication": false,
     "status": "NEW"
   },
@@ -215,7 +270,9 @@
     "preorderTypeId": 3,
     "configurationId": null,
     "environmentId": 4,
-    "datacenterIds": [7],
+    "datacenterIds": [
+      7
+    ],
     "isReplication": false,
     "status": "APPROVED"
   }
