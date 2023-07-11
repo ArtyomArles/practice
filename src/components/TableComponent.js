@@ -7,6 +7,7 @@ import {Table, Input, Button, Select} from 'antd'
 import {Preorder, Configuration, Environment, PreorderType, Datacenter} from '../models'
 import DropDownList from './DropDownList'
 import {PageSizes, Statuses} from '../data'
+import classNames from 'classnames'
 
 const columns = [
   {
@@ -148,10 +149,12 @@ const filtres = {
 
 function openAndCloseFilters() {
   const filter = document.getElementById('filter')
-  if (filter.style.display === 'none') {
-    filter.style.display = ''
+  if (filter.classList.contains('hiddenBlock')) {
+    const className = classNames('filter')
+    filter.className = className
   } else {
-    filter.style.display = 'none'
+    const className = classNames('hiddenBlock')
+    filter.className = className
   }
 }
 
@@ -168,7 +171,8 @@ export default function TableComponent() {
 
   useEffect(() => {
     const filter = document.getElementById('filter')
-    filter.style.display = 'none'
+    const className = classNames('hiddenBlock')
+    filter.className = className
     Preorder.search()
       .then(results => {
         setData(results.results)

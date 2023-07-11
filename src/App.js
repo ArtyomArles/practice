@@ -3,6 +3,7 @@ import TableComponent from './components/TableComponent'
 import JustTable from './components/JustTable'
 import Profile from './components/Profile'
 import SelectElement from './components/SelectElement'
+import classNames from 'classnames'
 import {Routes, Route, Link} from 'react-router-dom'
 import {Button} from 'antd'
 import {AiFillHeart} from 'react-icons/ai'
@@ -13,7 +14,8 @@ import {Columns, Configurations, Datacenters, Environments} from './data'
 function App() {
   useEffect(() => {
     const selectBlock = document.getElementById('selectBlock')
-    selectBlock.style.display = 'none'
+    const className = classNames('hiddenBlock')
+    selectBlock.className = className
   }, [])
 
   return (<div className='main'>
@@ -21,10 +23,12 @@ function App() {
       <Profile name="AC Практика" />
       <Button className='menuButton' onClick={() => {
         const selectBlock = document.getElementById('selectBlock')
-        if (selectBlock.style.display === 'none') {
-          selectBlock.style.display = ''
+        if (selectBlock.classList.contains('hiddenBlock')) {
+          const className = classNames('selectBlock')
+          selectBlock.className = className
         } else {
-          selectBlock.style.display = 'none'
+          const className = classNames('hiddenBlock')
+          selectBlock.className = className
         }
       }}>Меню</Button>
 
