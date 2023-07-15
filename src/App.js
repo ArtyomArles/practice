@@ -1,72 +1,36 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import TableComponent from './components/TableComponent'
-import JustTable from './components/JustTable'
 import Profile from './components/Profile'
-import SelectElement from './components/SelectElement'
-import classNames from 'classnames'
-import {Routes, Route, Link} from 'react-router-dom'
-import {Button} from 'antd'
-import {AiFillHeart} from 'react-icons/ai'
-import {BsFillBookmarkFill} from 'react-icons/bs'
-import {MdPhotoCamera, MdMap} from 'react-icons/md'
-import {Columns, Configurations, Datacenters, Environments} from './data'
+import {Routes, Route} from 'react-router-dom'
+import ListMenu from './components/ListMenu'
+import ConfigurationsTable from './components/ConfigurationsTable'
+import EnvironmentsTable from './components/EnvironmentsTable'
+import DatacentersTable from './components/DatacentersTable'
 
 function App() {
-  useEffect(() => {
-    const selectBlock = document.getElementById('selectBlock')
-    const className = classNames('hiddenBlock')
-    selectBlock.className = className
-  }, [])
 
   return (<div className='main'>
     <aside>
       <Profile name="AC Практика" />
-      <Button className='menuButton' onClick={() => {
-        const selectBlock = document.getElementById('selectBlock')
-        if (selectBlock.classList.contains('hiddenBlock')) {
-          const className = classNames('selectBlock')
-          selectBlock.className = className
-        } else {
-          const className = classNames('hiddenBlock')
-          selectBlock.className = className
-        }
-      }}>Меню</Button>
-
-
-      <div className="selectBlock" id="selectBlock">
-        <Link to="/preorders"><SelectElement id={1} img={<AiFillHeart />} title="Потребности" /></Link>
-        <Link to="/configurations"><SelectElement id={2} img={<BsFillBookmarkFill />} title="Конфигурации" /></Link>
-        <Link to="/environments"><SelectElement id={3} img={<MdPhotoCamera />} title="Среды" /></Link>
-        <Link to="/dataCenters"><SelectElement id={4} img={<MdMap />} title="ЦОДы" /></Link>
-      </div>
-
+      <ListMenu />
     </aside>
     <main>
       <Routes>
         <Route
-          path='/preorders'
+          path='/preorders/*'
           element={<TableComponent />}
         />
         <Route
           path='/configurations'
-          element={<JustTable
-            title='Конфигурации'
-            columns={Columns}
-            dataSource={Configurations} />}
+          element={<ConfigurationsTable />}
         />
         <Route
           path='/environments'
-          element={<JustTable
-            title='Среды'
-            columns={Columns}
-            dataSource={Datacenters} />}
+          element={<EnvironmentsTable />}
         />
         <Route
           path='/dataCenters'
-          element={<JustTable
-            title='ЦОДы'
-            columns={Columns}
-            dataSource={Environments} />}
+          element={<DatacentersTable />}
         />
       </Routes>
     </main>

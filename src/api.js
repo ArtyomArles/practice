@@ -1,10 +1,10 @@
 import * as Data from './data'
 
 export class Api {
-  static find(modelName, id) {
+  static find(modelName, regNumber) {
     return new Promise(resolve => {
-      const result = Data[modelName].find(item => item.id === id)
-      setTimeout(() => resolve(result), 800)
+      const result = Data[modelName].find(item => (item.regNumber[0] + item.regNumber[item.regNumber.length - 1]) === regNumber)
+      setTimeout(() => resolve(result), 100)
     })
   }
 
@@ -17,7 +17,7 @@ export class Api {
       environmentId: null,
       datacenterIds: [],
       isReplication: null,
-      statuses: [],
+      statuses: []
     }
 
     return new Promise(resolve => {
@@ -38,7 +38,7 @@ export class Api {
         results
       }
 
-      setTimeout(() => resolve(result), 300)
+      setTimeout(() => resolve(result), 100)
     })
   }
 }

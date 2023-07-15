@@ -7,10 +7,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  text-decoration: none;
-}
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -29,43 +25,33 @@ aside {
   width: 10%;
 }
 
-.menuButton {
+.icon {
+  margin-right: 10px;
+}
+
+.menuIcon{
+  font-size: 20px;
+}
+
+.menu {
   width: 100%;
   margin-top: 5px;
   margin-left: 15px;
-}
-
-.selectBlock {
-  width: 90%;
-  margin-left: 15px;
-  margin-top: 5px;
-  border: solid;
-  border-color: #cae4fc;
-  box-shadow: 5px 3px 3px #cae4fc;
-  border-width: 2px;
-  border-radius: 5px;
-  padding: 0 7px 7px;
-}
-
-.hiddenBlock {
-  display: none;
-}
-
-.selectElement {
-  display: flex;
-  width: 100%;
-  margin: 15px;
-  color: #838382;
   font-weight: 500;
 }
 
-.selectElement:hover {
-  color: rgb(67, 161, 255);
-  cursor: pointer;
+.selectPage {
+  color: rgb(125, 125, 125);
+  margin-top: 5px;
+  border: solid;
+  border-color: #cae4fc;
+  border-width: 2px;
+  border-radius: 5px;
 }
 
-.icon {
-  margin-right: 10px;
+.link {
+  cursor: pointer;
+  color: rgb(56, 109, 255);
 }
 
 .profile {
@@ -88,22 +74,9 @@ aside {
   margin-bottom: 5px;
 }
 
-.paginationBlock {
-  margin-top: 5px;
-  margin-left: 65%;
-  width: 40%;
-}
-
 .pagination {
   display: flex;
   justify-content: center;
-}
-
-.buttons {
-  display: flex;
-  justify-content: space-around;
-  margin: 5px 25%;
-  width: 50%;
 }
 
 .status {
@@ -199,10 +172,70 @@ p {
   width: 4%;
 }
 
+.table{
+  margin-left: 30px;
+  width: 98%;
+}
+
 .tableTitle {
   font-weight: 500;
 }
 
-.currentTable {
-  color: rgb(67, 161, 255);
+.titleModalWindow{
+  display: flex;
+  font-size: 17px;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.modalWindow{
+  font-weight: 550;
+  color: #fff;
+}
+.mainModalWindow{
+  border-radius: 5px;
+  background-color: #6493A0;
+  max-width: 90%;
+  padding: 10px 24px;
+}
+
+.confAndEnv{
+  display: flex;
+}
+
+.dataAndRepl{
+  display:flex;
+}
+
+.configuration, .environment, .datacenter, .isReplication{
+  width: 50%;
+  margin-right: 10px;
+}
+
+.modalSelect{
+  width: 100%;
+}
+
+.modalStatus{
+  width: 35%;
+  border-radius: 5px;
+}
+
+.modalTitleAndIcon{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 20%;
+}
+
+.modalTitle{
+  border-radius: 5px;
+  background-color: #6493A0;
+  width: 60%;
+  text-align: center;
+}
+
+.modalIcon{
+  font-size: 30px;
+  color: #6493A0;
 }
