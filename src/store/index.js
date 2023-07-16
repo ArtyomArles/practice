@@ -1,6 +1,8 @@
 import {combineReducers, configureStore} from '@reduxjs/toolkit'
 import storage from 'redux-persist/lib/storage'
 import filterSlice from './editFilter'
+import memorySlice from './memory'
+
 import {
   persistStore,
   persistReducer,
@@ -13,7 +15,8 @@ import {
 } from 'redux-persist'
 
 const rootReducer = combineReducers({
-  filter: filterSlice
+  filter: filterSlice,
+  memory: memorySlice
 })
 
 const persistConfig = {

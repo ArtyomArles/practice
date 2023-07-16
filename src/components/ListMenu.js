@@ -1,10 +1,12 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {AiFillHeart} from 'react-icons/ai'
 import {BsFillBookmarkFill} from 'react-icons/bs'
 import {MdPhotoCamera, MdMap} from 'react-icons/md'
 import {Link} from 'react-router-dom'
 import {MenuFoldOutlined, MenuUnfoldOutlined} from '@ant-design/icons'
 import {Button, Menu} from 'antd'
+import {useDispatch, useSelector} from 'react-redux'
+import {setKey, editMenuCollapsed} from '../store/memory'
 
 function getItem(label, key, icon, children, type) {
 
@@ -45,23 +47,26 @@ const items = [
 ]
 
 export default function ListMenu() {
-  const [collapsed, setCollapsed] = useState(false)
-  const toggleCollapsed = () => {
-    setCollapsed(!collapsed)
-  }
+  const collapsed = useSelector(state => state.memory.menuCollapsed)
+  const menuKeyPath = useSelector(state => state.memory.menuKeyPath)
+  const dispatch = useDispatch()
 
   return (<div className='menu'>
     <Button
       type="primary"
-      onClick={toggleCollapsed}
+      onClick={() =>
+        dispatch(editMenuCollapsed())}
     >
       {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
     </Button>
     <Menu className='selectPage'
-      defaultOpenKeys={['sub1']}
+      defaultSelectedKeys={menuKeyPath}
       mode="inline"
       inlineCollapsed={collapsed}
-      items={items} />
+      items={items}
+      onClick={(e) => {
+        dispatch(setKey(e.keyPath))
+      }} />
   </div>
   )
 }

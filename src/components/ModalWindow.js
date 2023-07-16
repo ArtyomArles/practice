@@ -49,15 +49,30 @@ export default function ModalWindow({preorder}) {
           <p className='modalTitle'>{preorder.regNumber}</p>
         </div>
         {(preorder.status === 'NEW') ?
-          <div className="modalStatus new"><RiChatNewLine className="iconStatus" />Новый</div>
+          <div className="modalStatus new">
+            <RiChatNewLine className="iconStatus" />
+            Новый
+          </div>
           : (preorder.status === 'APPROVED') ?
-            (<div className="modalStatus approved"><BsFillPersonCheckFill className="iconStatus" />Одобренный</div>)
+            (<div className="modalStatus approved">
+              <BsFillPersonCheckFill className="iconStatus" />
+              Одобренный
+            </div>)
             : (preorder.status === 'IN_WORK') ?
-              (<div className="modalStatus inWork"><BsPersonWorkspace className="iconStatus" />В работе</div>)
+              (<div className="modalStatus inWork">
+                <BsPersonWorkspace className="iconStatus" />
+                В работе
+              </div>)
               : (preorder.status === 'COMPLETED') ?
-                (<div className="modalStatus complited"><AiOutlineCheck className="iconStatus" />Завершенный</div>)
+                (<div className="modalStatus complited">
+                  <AiOutlineCheck className="iconStatus" />
+                  Завершенный
+                </div>)
                 :
-                (<div className="modalStatus canceled"><GiCancel className="iconStatus" />Отмененный</div>)}
+                (<div className="modalStatus canceled">
+                  <GiCancel className="iconStatus" />
+                  Отмененный
+                </div>)}
       </div>
       <div className='mainModalWindow'>
         <div className='confAndEnv'>

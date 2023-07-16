@@ -3,7 +3,8 @@ import * as Data from './data'
 export class Api {
   static find(modelName, regNumber) {
     return new Promise(resolve => {
-      const result = Data[modelName].find(item => (item.regNumber[0] + item.regNumber[item.regNumber.length - 1]) === regNumber)
+      const result = Data[modelName].find(item =>
+        (item.regNumber[0] + item.regNumber[item.regNumber.length - 1]) === regNumber)
       setTimeout(() => resolve(result), 100)
     })
   }

@@ -2,21 +2,20 @@ import React, {useState, useEffect} from 'react'
 import {Table, Input} from 'antd'
 import {Configuration} from '../models'
 import {Columns} from '../data'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import {setConfigurationSearchText} from '../store/editFilter'
-
-var search = ''
 
 export default function ConfigurationsTable() {
   const [dataSource, setData] = useState([])
   const dispatch = useDispatch()
+  const search = useSelector(state => state.filter.configurationSearchText)
 
   useEffect(() => {
     Configuration.search({term: search})
       .then(results => {
         setData(results.results)
       })
-  }, [])
+  }, [search])
 
   return (
     <div className='table'>
@@ -29,10 +28,10 @@ export default function ConfigurationsTable() {
           placeholder="Начните ввод кода или заголовка"
           className="select"
           allowClear
+          value={search}
           onChange={(text) => {
-            search = text.target.value
             dispatch(setConfigurationSearchText(text.target.value))
-            Configuration.search({term: search})
+            Configuration.search({term: text.target.value})
               .then(results => {
                 setData(results.results)
               })
