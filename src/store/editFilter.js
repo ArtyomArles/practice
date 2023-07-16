@@ -15,7 +15,7 @@ const filterSlice = createSlice({
     configurationSearchText: '',
     environmentSearchText: '',
     datacenterSearchText: '',
-    menuKeyPath: ['']
+    menuKeyPath: null
   },
   reducers: {
     setRegNumber(state, action) {

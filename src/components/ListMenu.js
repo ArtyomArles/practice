@@ -41,7 +41,7 @@ const items = [
   getItem(
     'ЦОДы',
     '4',
-    <Link to="/dataCenters">
+    <Link to="/datacenters">
       <MdMap className='menuIcon' />
     </Link>)
 ]

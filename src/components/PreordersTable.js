@@ -13,7 +13,7 @@ import {confId, envId, dcId, iR} from './ModalWindow'
 import {editFiltersCollapsed, setPaginationPerPage} from '../store/memory'
 import Filters from './Filters'
 
-export default function TableComponent() {
+export default function PreordersTable() {
   const [dataSource, setData] = useState([])
   const [countData, setCount] = useState(0)
   const [modalActive, setModalActive] = useState(false)
@@ -30,7 +30,7 @@ export default function TableComponent() {
       key: 'id',
     },
     {
-      title: 'Рег.номер',
+      title: 'Рег. номер',
       dataIndex: 'regNumber',
       key: 'regNumber',
       render: (text) => <p className='link'
@@ -39,7 +39,6 @@ export default function TableComponent() {
             .then((result) => {
               setSelectedPreorder(result)
             })
-          setSelectedPreorder(dataSource[0])
         }}
         onClick={() => {
           setModalActive(true)
@@ -169,8 +168,16 @@ export default function TableComponent() {
     if (filtres.regNumber.length === 2) {
       Preorder.find(filtres.regNumber[0] + filtres.regNumber[filtres.regNumber.length - 1])
         .then(result => {
-          setData(new Array(result))
-          setCount(1)
+          if (result !== undefined) {
+            setData(new Array(result))
+            setCount(1)
+          } else {
+            Preorder.search(filtres)
+              .then(results => {
+                setData(results.results)
+                setCount(results.count)
+              })
+          }
         })
     } else {
       Preorder.search(filtres)

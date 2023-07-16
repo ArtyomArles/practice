@@ -1,5 +1,5 @@
 import React from 'react'
-import TableComponent from './components/TableComponent'
+import PreordersTable from './components/PreordersTable'
 import Profile from './components/Profile'
 import {Routes, Route} from 'react-router-dom'
 import ListMenu from './components/ListMenu'
@@ -7,7 +7,7 @@ import ConfigurationsTable from './components/ConfigurationsTable'
 import EnvironmentsTable from './components/EnvironmentsTable'
 import DatacentersTable from './components/DatacentersTable'
 
-function App() {
+export default function App() {
 
   return (<div className='main'>
     <aside>
@@ -18,7 +18,7 @@ function App() {
       <Routes>
         <Route
           path='/preorders/*'
-          element={<TableComponent />}
+          element={<PreordersTable />}
         />
         <Route
           path='/configurations'
@@ -29,7 +29,7 @@ function App() {
           element={<EnvironmentsTable />}
         />
         <Route
-          path='/dataCenters'
+          path='/datacenters'
           element={<DatacentersTable />}
         />
       </Routes>
@@ -37,4 +37,3 @@ function App() {
   </div>
   )
 }
-export default App
