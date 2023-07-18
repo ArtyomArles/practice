@@ -5,7 +5,7 @@ const memorySlice = createSlice({
   initialState: {
     menuKeyPath: [],
     menuCollapsed: false,
-    filtersCollapsed: {display: 'none'},
+    filtersCollapsed: false,
     paginationPerPage: 10
   },
   reducers: {
@@ -16,13 +16,7 @@ const memorySlice = createSlice({
       state.menuCollapsed = !state.menuCollapsed
     },
     editFiltersCollapsed(state) {
-      if (state.filtersCollapsed === undefined) {
-        state.filtersCollapsed = {display: 'flex'}
-      } else if (state.filtersCollapsed.display === 'flex') {
-        state.filtersCollapsed.display = 'none'
-      } else {
-        state.filtersCollapsed.display = 'flex'
-      }
+      state.filtersCollapsed = !state.filtersCollapsed
     },
     setPaginationPerPage(state, action) {
       state.paginationPerPage = action.payload

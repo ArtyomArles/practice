@@ -3,12 +3,12 @@ import {Table, Input} from 'antd'
 import {Configuration} from '../models'
 import {Columns} from '../data'
 import {useDispatch, useSelector} from 'react-redux'
-import {setConfigurationSearchText} from '../store/editFilter'
+import {setConfigurationSearchText} from '../store/searchText'
 
 export default function ConfigurationsTable() {
   const [dataSource, setData] = useState([])
   const dispatch = useDispatch()
-  const search = useSelector(state => state.filter.configurationSearchText)
+  const search = useSelector(state => state.searchText.configurationSearchText)
 
   useEffect(() => {
     Configuration.search({term: search})

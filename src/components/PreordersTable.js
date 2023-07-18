@@ -20,7 +20,7 @@ export default function PreordersTable() {
   const [selectedPreorder, setSelectedPreorder] = useState({})
 
   const dispatch = useDispatch()
-  const filtres = useSelector(state => state.filter.filter)
+  const filtres = useSelector(state => state.filter)
   const countItemsPerPage = useSelector(state => state.memory.paginationPerPage)
 
   const columns = [
@@ -188,56 +188,59 @@ export default function PreordersTable() {
     }
   }, [filtres])
 
-  return (<div className="tableComponent">
-    <Button
-      className="filters"
-      onClick={() => {
-        dispatch(editFiltersCollapsed())
-      }}
-    >Фильтры</Button>
-    <Filters />
-    <p className="countData">Найдено: {countData}</p>
-    <p className='tableTitle'>Потребности</p>
-    <Table
-      dataSource={dataSource}
-      columns={columns}
-      pagination={{
-        pageSize: countItemsPerPage
-      }}
-    />
-    <div className="pagination">
-      <p>Количество записей в таблице на странице:</p>
-      <Select
-        virtual={false}
-        className="pageSize"
-        defaultValue={countItemsPerPage}
-        options={PageSizes}
-        onChange={(el) => {
-          dispatch(setPaginationPerPage(el))
+  return (
+    <div className="tableComponent">
+      <Button
+        className="filters"
+        onClick={() => {
+          dispatch(editFiltersCollapsed())
+        }}
+      >Фильтры</Button>
+      <Filters />
+      <p className="countData">Найдено: {countData}</p>
+      <p className='tableTitle'>Потребности</p>
+      <Table
+        dataSource={dataSource}
+        columns={columns}
+        pagination={{
+          pageSize: countItemsPerPage
         }}
       />
-    </div>
-    <Routes>
-      <Route path={selectedPreorder.regNumber} element={
-        <Modal
-          open={modalActive}
-          title='Редактирование потребности'
-          onOk={() => {
-            setModalActive(false)
-            goBack()
-            selectedPreorder.configurationId = confId
-            selectedPreorder.environmentId = envId
-            selectedPreorder.datacenterIds = dcId
-            selectedPreorder.isReplication = iR
+      <div className="pagination">
+        <p>Количество записей в таблице на странице:</p>
+        <Select
+          virtual={false}
+          className="pageSize"
+          defaultValue={countItemsPerPage}
+          options={PageSizes}
+          onChange={(el) => {
+            dispatch(setPaginationPerPage(el))
           }}
-          onCancel={() => {
-            setModalActive(false)
-            goBack()
-          }} >
-          <ModalWindow preorder={selectedPreorder} />
-        </Modal>
-      } />
-    </Routes>
-  </div>
+        />
+      </div>
+      <Routes>
+        <Route
+          path={selectedPreorder.regNumber}
+          element={
+            <Modal
+              open={modalActive}
+              title='Редактирование потребности'
+              onOk={() => {
+                setModalActive(false)
+                goBack()
+                selectedPreorder.configurationId = confId
+                selectedPreorder.environmentId = envId
+                selectedPreorder.datacenterIds = dcId
+                selectedPreorder.isReplication = iR
+              }}
+              onCancel={() => {
+                setModalActive(false)
+                goBack()
+              }} >
+              <ModalWindow preorder={selectedPreorder} />
+            </Modal>
+          } />
+      </Routes>
+    </div>
   )
 }

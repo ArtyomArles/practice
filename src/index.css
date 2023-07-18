@@ -239,3 +239,7 @@ p {
   font-size: 30px;
   color: #6493A0;
 }
+
+.collapsed{
+  display: none
+}

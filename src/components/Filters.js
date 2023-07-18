@@ -22,7 +22,7 @@ export default function Filters() {
   const [datacenterIds, setDatacenterIds] = useState([])
 
   const dispatch = useDispatch()
-  const filtres = useSelector(state => state.filter.filter)
+  const filters = useSelector(state => state.filter)
   const visible = useSelector(state => state.memory.filtersCollapsed)
 
   useEffect(() => {
@@ -49,14 +49,14 @@ export default function Filters() {
   }, [])
 
   return (
-    <div className="filter" id="filter" style={visible}>
+    <div className={visible ? 'collapsed' : 'filter'} id="filter">
       <div className="input" >
         <p>Рег. номер:</p>
         <Input
           placeholder="Начните ввод номера"
           className="select"
           allowClear
-          value={filtres.regNumber}
+          value={filters.regNumber}
           onChange={(text) => {
             dispatch(setRegNumber(text.target.value))
           }}
@@ -65,7 +65,7 @@ export default function Filters() {
       <DropDownList
         title="Тип потребности:"
         options={preorderTypesId}
-        state={filtres.preorderTypeId}
+        state={filters.preorderTypeId}
         onChange={(el) => {
           dispatch(setPreorder(el))
         }}
@@ -73,7 +73,7 @@ export default function Filters() {
       <DropDownList
         title="Конфигурация:"
         options={codesConfigurations}
-        state={filtres.configurationId}
+        state={filters.configurationId}
         onChange={(el) => {
           dispatch(setConfiguration(el))
         }}
@@ -81,7 +81,7 @@ export default function Filters() {
       <DropDownList
         title="Среда:"
         options={codesEnvironments}
-        state={filtres.environmentId}
+        state={filters.environmentId}
         onChange={(el) => {
           dispatch(setEnvironment(el))
         }}
@@ -90,7 +90,7 @@ export default function Filters() {
         title="ЦОД:"
         options={datacenterIds}
         mode='multiple'
-        state={filtres.datacenterIds}
+        state={filters.datacenterIds}
         onChange={(el) => {
           dispatch(setDatacenter(el))
         }}
@@ -98,7 +98,7 @@ export default function Filters() {
       <DropDownList
         title="Признак репликации:"
         options={[{value: true, label: 'Да'}, {value: false, label: 'Нет'}]}
-        state={filtres.isReplication}
+        state={filters.isReplication}
         onChange={(el) => {
           dispatch(setReplication(el))
         }}
@@ -107,7 +107,7 @@ export default function Filters() {
         title="Статусы:"
         options={Statuses}
         mode='multiple'
-        state={filtres.statuses}
+        state={filters.statuses}
         onChange={(el) => {
           dispatch(setStatuses(el))
         }}

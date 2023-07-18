@@ -51,22 +51,23 @@ export default function ListMenu() {
   const menuKeyPath = useSelector(state => state.memory.menuKeyPath)
   const dispatch = useDispatch()
 
-  return (<div className='menu'>
-    <Button
-      type="primary"
-      onClick={() =>
-        dispatch(editMenuCollapsed())}
-    >
-      {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-    </Button>
-    <Menu className='selectPage'
-      defaultSelectedKeys={menuKeyPath}
-      mode="inline"
-      inlineCollapsed={collapsed}
-      items={items}
-      onClick={(e) => {
-        dispatch(setKey(e.keyPath))
-      }} />
-  </div>
+  return (
+    <div className='menu'>
+      <Button
+        type="primary"
+        onClick={() =>
+          dispatch(editMenuCollapsed())}
+      >
+        {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+      </Button>
+      <Menu className='selectPage'
+        defaultSelectedKeys={menuKeyPath}
+        mode="inline"
+        inlineCollapsed={collapsed}
+        items={items}
+        onClick={(e) => {
+          dispatch(setKey(e.keyPath))
+        }} />
+    </div>
   )
 }

@@ -3,12 +3,12 @@ import {Table, Input} from 'antd'
 import {Datacenter} from '../models'
 import {Columns} from '../data'
 import {useDispatch, useSelector} from 'react-redux'
-import {setDatacenterSearchText} from '../store/editFilter'
+import {setDatacenterSearchText} from '../store/searchText'
 
 export default function DatacentersTable() {
   const [dataSource, setData] = useState([])
   const dispatch = useDispatch()
-  const search = useSelector(state => state.filter.datacenterSearchText)
+  const search = useSelector(state => state.searchText.datacenterSearchText)
 
   useEffect(() => {
     Datacenter.search({term: search})

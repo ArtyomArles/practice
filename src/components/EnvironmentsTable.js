@@ -3,12 +3,12 @@ import {Table, Input} from 'antd'
 import {Environment} from '../models'
 import {Columns} from '../data'
 import {useDispatch, useSelector} from 'react-redux'
-import {setEnvironmentSearchText} from '../store/editFilter'
+import {setEnvironmentSearchText} from '../store/searchText'
 
 export default function EnvironmentsTable() {
   const [dataSource, setData] = useState([])
   const dispatch = useDispatch()
-  const search = useSelector(state => state.filter.environmentSearchText)
+  const search = useSelector(state => state.searchText.environmentSearchText)
 
   useEffect(() => {
     Environment.search({term: search})
