@@ -1,11 +1,11 @@
 import * as Data from './data'
 
 export class Api {
+
   static find(modelName, regNumber) {
     return new Promise(resolve => {
       const result = Data[modelName].find(item =>
-        (item.regNumber[0] + item.regNumber[item.regNumber.length - 1]) === regNumber ||
-        (item.regNumber[0].toLowerCase() + item.regNumber[item.regNumber.length - 1]) === regNumber)
+        item.regNumber === regNumber)
       setTimeout(() => resolve(result), 100)
     })
   }
@@ -34,7 +34,6 @@ export class Api {
         .filter(item => (!params.isReplication && params.isReplication !== false) || item.isReplication === params.isReplication)
         .filter(item => !params.statuses || !params.statuses.length || params.statuses.includes(item.status))
 
-
       const result = {
         count: results.length,
         results
@@ -42,5 +41,6 @@ export class Api {
 
       setTimeout(() => resolve(result), 100)
     })
+
   }
 }

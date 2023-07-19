@@ -23,25 +23,25 @@ const items = [
   getItem(
     'Потребности',
     '1',
-    <Link to="/preorders" >
+    <Link to="preorders" >
       <AiFillHeart className='menuIcon' />
     </Link >),
   getItem(
     'Конфигурации',
     '2',
-    <Link to="/configurations">
+    <Link to="configurations">
       <BsFillBookmarkFill className='menuIcon' />
     </Link>),
   getItem(
     'Среды',
     '3',
-    <Link to="/environments">
+    <Link to="environments">
       <MdPhotoCamera className='menuIcon' />
     </Link>),
   getItem(
     'ЦОДы',
     '4',
-    <Link to="/datacenters">
+    <Link to="datacenters">
       <MdMap className='menuIcon' />
     </Link>)
 ]
@@ -61,7 +61,7 @@ export default function ListMenu() {
         {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
       </Button>
       <Menu className='selectPage'
-        defaultSelectedKeys={menuKeyPath}
+        selectedKeys={menuKeyPath}
         mode="inline"
         inlineCollapsed={collapsed}
         items={items}

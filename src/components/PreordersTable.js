@@ -7,9 +7,9 @@ import {GiCancel} from 'react-icons/gi'
 import {Table, Button, Select, Modal} from 'antd'
 import {Preorder} from '../models'
 import {PageSizes} from '../data'
-import ModalWindow from './ModalWindow'
+import ModalWindow from './PreorderModalWindow'
 import {Routes, Route, Link, useNavigate} from 'react-router-dom'
-import {confId, envId, dcId, iR} from './ModalWindow'
+import {confId, envId, dcId, iR} from './PreorderModalWindow'
 import {editFiltersCollapsed, setPaginationPerPage} from '../store/memory'
 import Filters from './Filters'
 
@@ -35,7 +35,7 @@ export default function PreordersTable() {
       key: 'regNumber',
       render: (text) => <p className='link'
         onMouseOver={() => {
-          Preorder.find(text[0] + text[text.length - 1])
+          Preorder.find(text)
             .then((result) => {
               setSelectedPreorder(result)
             })
@@ -165,27 +165,11 @@ export default function PreordersTable() {
   const goBack = () => navigate('/preorders')
 
   useEffect(() => {
-    if (filtres.regNumber.length === 2) {
-      Preorder.find(filtres.regNumber[0] + filtres.regNumber[filtres.regNumber.length - 1])
-        .then(result => {
-          if (result !== undefined) {
-            setData(new Array(result))
-            setCount(1)
-          } else {
-            Preorder.search(filtres)
-              .then(results => {
-                setData(results.results)
-                setCount(results.count)
-              })
-          }
-        })
-    } else {
-      Preorder.search(filtres)
-        .then(results => {
-          setData(results.results)
-          setCount(results.count)
-        })
-    }
+    Preorder.search(filtres)
+      .then(results => {
+        setData(results.results)
+        setCount(results.count)
+      })
   }, [filtres])
 
   return (

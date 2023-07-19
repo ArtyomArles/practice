@@ -18,19 +18,23 @@ export default function App() {
       <main>
         <Routes>
           <Route
-            path='/preorders/*'
+            path=''
+            element={<div></div>}>
+          </Route>
+          <Route
+            path='preorders/*'
             element={<PreordersTable />}
           />
           <Route
-            path='/configurations'
+            path='configurations/*'
             element={<ConfigurationsTable />}
           />
           <Route
-            path='/environments'
+            path='environments/*'
             element={<EnvironmentsTable />}
           />
           <Route
-            path='/datacenters'
+            path='datacenters/*'
             element={<DatacentersTable />}
           />
         </Routes>

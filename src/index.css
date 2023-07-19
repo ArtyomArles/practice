@@ -7,6 +7,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+a {
+  text-decoration: none;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -29,7 +33,7 @@ aside {
   margin-right: 10px;
 }
 
-.menuIcon{
+.menuIcon {
   font-size: 20px;
 }
 
@@ -172,7 +176,7 @@ p {
   width: 4%;
 }
 
-.table{
+.table {
   margin-left: 30px;
   width: 98%;
 }
@@ -181,65 +185,93 @@ p {
   font-weight: 500;
 }
 
-.titleModalWindow{
+.titleModalWindow {
   display: flex;
   font-size: 17px;
   justify-content: space-between;
   margin-bottom: 5px;
 }
 
-.modalWindow{
+.modalWindow {
   font-weight: 550;
   color: #fff;
 }
-.mainModalWindow{
+
+.mainModalWindow {
   border-radius: 5px;
   background-color: #6493A0;
   max-width: 90%;
   padding: 10px 24px;
+  color: #fff;
+  font-weight: 550;
 }
 
-.confAndEnv{
+.confAndEnv {
   display: flex;
 }
 
-.dataAndRepl{
-  display:flex;
+.dataAndRepl {
+  display: flex;
 }
 
-.configuration, .environment, .datacenter, .isReplication{
+.configuration,
+.environment,
+.datacenter,
+.isReplication {
   width: 50%;
   margin-right: 10px;
 }
 
-.modalSelect{
+.modalSelect {
   width: 100%;
 }
 
-.modalStatus{
+.modalStatus {
   width: 35%;
   border-radius: 5px;
 }
 
-.modalTitleAndIcon{
+.modalTitleAndIcon {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 20%;
 }
 
-.modalTitle{
+.modalTitle {
   border-radius: 5px;
   background-color: #6493A0;
   width: 60%;
   text-align: center;
 }
 
-.modalIcon{
+.modalIcon {
   font-size: 30px;
   color: #6493A0;
 }
 
-.collapsed{
+.collapsed {
   display: none
+}
+
+.headerModalWindow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  font-size: 17px;
+}
+
+.directoryMainModalWindow {
+  margin-bottom: 5px;
+}
+
+.inputsMainModalWindow {
+  display: flex;
+  justify-content: space-around;
+}
+
+.textareaMainModalWindow{
+  margin-left: 3.5%;
+  width: 93%;
 }
