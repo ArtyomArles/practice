@@ -1,3 +1,4 @@
+import debounce from 'lodash.debounce'
 import {Api} from '../api'
 
 export default class ApplicationModel {
@@ -10,6 +11,8 @@ export default class ApplicationModel {
   static find(id) {
     return Api.find(this.modelName, id)
   }
+
+  static debouncedSearch = debounce(this.search, 600, {leading: true, trailing: true})
 
   static search(params) {
     return Api.search(this.modelName, params)

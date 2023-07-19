@@ -165,7 +165,7 @@ export default function PreordersTable() {
   const goBack = () => navigate('/preorders')
 
   useEffect(() => {
-    Preorder.search(filtres)
+    Preorder.debouncedSearch(filtres)
       .then(results => {
         setData(results.results)
         setCount(results.count)
