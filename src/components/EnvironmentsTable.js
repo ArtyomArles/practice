@@ -5,11 +5,14 @@ import {useDispatch, useSelector} from 'react-redux'
 import {setEnvironmentSearchText} from '../store/searchText'
 import {Routes, Route, Link, useNavigate} from 'react-router-dom'
 import DirectoryModalWindow, {code, title, description} from './DirectoryModalWindow'
+import {setStoredSelectedDirectory} from '../store/storedSelectedDirectory'
+import {setModalActive} from '../store/memory'
 
 export default function EnvironmentsTable() {
   const [dataSource, setData] = useState([])
-  const [selectedEnvironment, setSelectedEnvironment] = useState({})
-  const [modalActive, setModalActive] = useState(false)
+  const [selectedEnvironment, setSelectedEnvironment] = useState(useSelector(state => state.storedSelectedDirectory))
+  const storedSelectedDirectory = useSelector(state => state.storedSelectedDirectory)
+  const modalActive = useSelector(state => state.memory.modalActive)
   const navigate = useNavigate()
   const goBack = () => navigate('/environments')
   const dispatch = useDispatch()
@@ -29,13 +32,13 @@ export default function EnvironmentsTable() {
         onMouseOver={() => {
           Environment.search({term: text})
             .then((results) => {
-              setSelectedEnvironment(results.results[0])
+              dispatch(setStoredSelectedDirectory(results.results[0]))
             })
         }}
         onClick={() => {
-          setModalActive(true)
+          dispatch(setModalActive())
         }}
-      > <Link to={selectedEnvironment.code}>{text}</Link></p >,
+      > <Link to={storedSelectedDirectory.code}>{text}</Link></p >,
     },
     {
       title: 'Заголовок',
@@ -56,10 +59,17 @@ export default function EnvironmentsTable() {
       })
   }, [search])
 
+  useEffect(() => {
+    Environment.search({term: storedSelectedDirectory.code})
+      .then((results) => {
+        setSelectedEnvironment(results.results[0])
+      })
+  }, [storedSelectedDirectory.code])
+
   return (
     <div className='table'>
       <p className='tableTitle'>
-        ЦОДы
+        Среды
       </p>
       <div className="input" >
         <p>Поиск:</p>
@@ -83,20 +93,21 @@ export default function EnvironmentsTable() {
       />
       <Routes>
         <Route
-          path={selectedEnvironment.code}
+          path={storedSelectedDirectory.code}
           element={
             <Modal
               open={modalActive}
-              title='Редактирование конфигурации'
+              title='Редактирование среды'
               onOk={() => {
-                setModalActive(false)
+                dispatch(setModalActive())
                 goBack()
                 selectedEnvironment.code = code
                 selectedEnvironment.title = title
                 selectedEnvironment.description = description
+                dispatch(setStoredSelectedDirectory(selectedEnvironment))
               }}
               onCancel={() => {
-                setModalActive(false)
+                dispatch(setModalActive())
                 goBack()
               }} >
               <DirectoryModalWindow directory={selectedEnvironment} />

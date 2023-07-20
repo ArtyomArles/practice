@@ -5,11 +5,14 @@ import {useDispatch, useSelector} from 'react-redux'
 import {setDatacenterSearchText} from '../store/searchText'
 import {Routes, Route, Link, useNavigate} from 'react-router-dom'
 import DirectoryModalWindow, {code, title, description} from './DirectoryModalWindow'
+import {setStoredSelectedDirectory} from '../store/storedSelectedDirectory'
+import {setModalActive} from '../store/memory'
 
 export default function DatacentersTable() {
   const [dataSource, setData] = useState([])
-  const [selectedDatacenter, setSelectedDatacenter] = useState({})
-  const [modalActive, setModalActive] = useState(false)
+  const [selectedDatacenter, setSelectedDatacenter] = useState(useSelector(state => state.storedSelectedDirectory))
+  const storedSelectedDirectory = useSelector(state => state.storedSelectedDirectory)
+  const modalActive = useSelector(state => state.memory.modalActive)
   const navigate = useNavigate()
   const goBack = () => navigate('/datacenters')
   const dispatch = useDispatch()
@@ -29,13 +32,13 @@ export default function DatacentersTable() {
         onMouseOver={() => {
           Datacenter.search({term: text})
             .then((results) => {
-              setSelectedDatacenter(results.results[0])
+              dispatch(setStoredSelectedDirectory(results.results[0]))
             })
         }}
         onClick={() => {
-          setModalActive(true)
+          dispatch(setModalActive())
         }}
-      > <Link to={selectedDatacenter.code}>{text}</Link></p >,
+      > <Link to={storedSelectedDirectory.code}>{text}</Link></p >,
     },
     {
       title: 'Заголовок',
@@ -56,10 +59,17 @@ export default function DatacentersTable() {
       })
   }, [search])
 
+  useEffect(() => {
+    Datacenter.search({term: storedSelectedDirectory.code})
+      .then((results) => {
+        setSelectedDatacenter(results.results[0])
+      })
+  }, [storedSelectedDirectory.code])
+
   return (
     <div className='table'>
       <p className='tableTitle'>
-        Среды
+        ЦОДы
       </p>
       <div className="input" >
         <p>Поиск:</p>
@@ -83,20 +93,21 @@ export default function DatacentersTable() {
       />
       <Routes>
         <Route
-          path={selectedDatacenter.code}
+          path={storedSelectedDirectory.code}
           element={
             <Modal
               open={modalActive}
               title='Редактирование конфигурации'
               onOk={() => {
-                setModalActive(false)
+                dispatch(setModalActive())
                 goBack()
                 selectedDatacenter.code = code
                 selectedDatacenter.title = title
                 selectedDatacenter.description = description
+                dispatch(setStoredSelectedDirectory(selectedDatacenter))
               }}
               onCancel={() => {
-                setModalActive(false)
+                dispatch(setModalActive())
                 goBack()
               }} >
               <DirectoryModalWindow directory={selectedDatacenter} />

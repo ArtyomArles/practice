@@ -7,21 +7,22 @@ import {GiCancel} from 'react-icons/gi'
 import {Table, Button, Select, Modal} from 'antd'
 import {Preorder} from '../models'
 import {PageSizes} from '../data'
-import ModalWindow from './PreorderModalWindow'
+import PreorderModalWindow from './PreorderModalWindow'
 import {Routes, Route, Link, useNavigate} from 'react-router-dom'
 import {confId, envId, dcId, iR} from './PreorderModalWindow'
-import {editFiltersCollapsed, setPaginationPerPage} from '../store/memory'
+import {editFiltersCollapsed, setModalActive, setPaginationPerPage} from '../store/memory'
+import {setStoredSelectedPreorder} from '../store/storedSelectedPreorder'
 import Filters from './Filters'
 
 export default function PreordersTable() {
   const [dataSource, setData] = useState([])
   const [countData, setCount] = useState(0)
-  const [modalActive, setModalActive] = useState(false)
-  const [selectedPreorder, setSelectedPreorder] = useState({})
-
+  const [selectedPreorder, setSelectedPreorder] = useState(useSelector(state => state.storedSelectedPreorder))
+  const storedSelectedPreorder = useSelector(state => state.storedSelectedPreorder)
   const dispatch = useDispatch()
   const filtres = useSelector(state => state.filter)
   const countItemsPerPage = useSelector(state => state.memory.paginationPerPage)
+  const modalActive = useSelector(state => state.memory.modalActive)
 
   const columns = [
     {
@@ -37,11 +38,11 @@ export default function PreordersTable() {
         onMouseOver={() => {
           Preorder.find(text)
             .then((result) => {
-              setSelectedPreorder(result)
+              dispatch(setStoredSelectedPreorder(result))
             })
         }}
         onClick={() => {
-          setModalActive(true)
+          dispatch(setModalActive())
         }}
       > <Link to={selectedPreorder.regNumber}>{text}</Link></p >,
     },
@@ -165,12 +166,19 @@ export default function PreordersTable() {
   const goBack = () => navigate('/preorders')
 
   useEffect(() => {
-    Preorder.search(filtres)
+    Preorder.debouncedSearch(filtres)
       .then(results => {
         setData(results.results)
         setCount(results.count)
       })
   }, [filtres])
+
+  useEffect(() => {
+    Preorder.find(storedSelectedPreorder.regNumber)
+      .then((result) => {
+        setSelectedPreorder(result)
+      })
+  }, [storedSelectedPreorder.regNumber])
 
   return (
     <div className="tableComponent">
@@ -210,18 +218,19 @@ export default function PreordersTable() {
               open={modalActive}
               title='Редактирование потребности'
               onOk={() => {
-                setModalActive(false)
+                dispatch(setModalActive())
                 goBack()
                 selectedPreorder.configurationId = confId
                 selectedPreorder.environmentId = envId
                 selectedPreorder.datacenterIds = dcId
                 selectedPreorder.isReplication = iR
+                dispatch(setStoredSelectedPreorder(selectedPreorder))
               }}
               onCancel={() => {
-                setModalActive(false)
+                dispatch(setModalActive())
                 goBack()
               }} >
-              <ModalWindow preorder={selectedPreorder} />
+              <PreorderModalWindow preorder={selectedPreorder} />
             </Modal>
           } />
       </Routes>

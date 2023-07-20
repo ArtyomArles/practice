@@ -5,11 +5,14 @@ import {useDispatch, useSelector} from 'react-redux'
 import {setConfigurationSearchText} from '../store/searchText'
 import {Routes, Route, Link, useNavigate} from 'react-router-dom'
 import DirectoryModalWindow, {code, title, description} from './DirectoryModalWindow'
+import {setStoredSelectedDirectory} from '../store/storedSelectedDirectory'
+import {setModalActive} from '../store/memory'
 
 export default function ConfigurationsTable() {
   const [dataSource, setData] = useState([])
-  const [selectedConfiguration, setSelectedConfiguration] = useState({})
-  const [modalActive, setModalActive] = useState(false)
+  const [selectedConfiguration, setSelectedConfiguration] = useState(useSelector(state => state.storedSelectedDirectory))
+  const storedSelectedDirectory = useSelector(state => state.storedSelectedDirectory)
+  const modalActive = useSelector(state => state.memory.modalActive)
   const navigate = useNavigate()
   const goBack = () => navigate('/configurations')
   const dispatch = useDispatch()
@@ -29,13 +32,13 @@ export default function ConfigurationsTable() {
         onMouseOver={() => {
           Configuration.search({term: text})
             .then((results) => {
-              setSelectedConfiguration(results.results[0])
+              dispatch(setStoredSelectedDirectory(results.results[0]))
             })
         }}
         onClick={() => {
-          setModalActive(true)
+          dispatch(setModalActive())
         }}
-      > <Link to={selectedConfiguration.code}>{text}</Link></p >,
+      > <Link to={storedSelectedDirectory.code}>{text}</Link></p >,
     },
     {
       title: 'Заголовок',
@@ -55,6 +58,13 @@ export default function ConfigurationsTable() {
         setData(results.results)
       })
   }, [search])
+
+  useEffect(() => {
+    Configuration.search({term: storedSelectedDirectory.code})
+      .then((results) => {
+        setSelectedConfiguration(results.results[0])
+      })
+  }, [storedSelectedDirectory.code])
 
   return (
     <div className='table'>
@@ -83,20 +93,21 @@ export default function ConfigurationsTable() {
       />
       <Routes>
         <Route
-          path={selectedConfiguration.code}
+          path={storedSelectedDirectory.code}
           element={
             <Modal
               open={modalActive}
               title='Редактирование конфигурации'
               onOk={() => {
-                setModalActive(false)
+                dispatch(setModalActive())
                 goBack()
                 selectedConfiguration.code = code
                 selectedConfiguration.title = title
                 selectedConfiguration.description = description
+                dispatch(setStoredSelectedDirectory(selectedConfiguration))
               }}
               onCancel={() => {
-                setModalActive(false)
+                dispatch(setModalActive())
                 goBack()
               }} >
               <DirectoryModalWindow directory={selectedConfiguration} />

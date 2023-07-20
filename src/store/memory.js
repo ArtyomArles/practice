@@ -6,7 +6,8 @@ const memorySlice = createSlice({
     menuKeyPath: [],
     menuCollapsed: false,
     filtersCollapsed: false,
-    paginationPerPage: 10
+    paginationPerPage: 10,
+    modalActive: false,
   },
   reducers: {
     setKey(state, action) {
@@ -20,6 +21,9 @@ const memorySlice = createSlice({
     },
     setPaginationPerPage(state, action) {
       state.paginationPerPage = action.payload
+    },
+    setModalActive(state) {
+      state.modalActive = !state.modalActive
     }
   }
 })
@@ -28,6 +32,7 @@ export const {
   setKey,
   editMenuCollapsed,
   editFiltersCollapsed,
-  setPaginationPerPage
+  setPaginationPerPage,
+  setModalActive
 } = memorySlice.actions
 export default memorySlice.reducer

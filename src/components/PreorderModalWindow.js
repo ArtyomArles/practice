@@ -12,7 +12,7 @@ var envId = undefined
 var dcId = undefined
 var iR = undefined
 
-export default function ModalWindow({preorder}) {
+export default function PreorderModalWindow({preorder}) {
   const [configurationsId, setConfigurationsId] = useState(undefined)
   const [environmentsId, setEnvironmentsId] = useState(undefined)
   const [datacentersId, setDatacentesrId] = useState(undefined)

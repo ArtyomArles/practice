@@ -3,6 +3,8 @@ import storage from 'redux-persist/lib/storage'
 import filterSlice from './editFilter'
 import memorySlice from './memory'
 import searchTextSlice from './searchText'
+import storedSelectedPreorder from './storedSelectedPreorder'
+import storedSelectedDirectory from './storedSelectedDirectory'
 
 import {
   persistStore,
@@ -18,7 +20,9 @@ import {
 const rootReducer = combineReducers({
   filter: filterSlice,
   memory: memorySlice,
-  searchText: searchTextSlice
+  searchText: searchTextSlice,
+  storedSelectedPreorder,
+  storedSelectedDirectory
 })
 
 const persistConfig = {
