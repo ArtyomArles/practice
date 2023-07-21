@@ -1,4 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit'
+import {PreorderTypes, Configurations, Environments, Datacenters} from '../data'
 
 const memorySlice = createSlice({
   name: 'memory',
@@ -8,6 +9,10 @@ const memorySlice = createSlice({
     filtersCollapsed: false,
     paginationPerPage: 10,
     modalActive: false,
+    PreorderTypes,
+    Configurations,
+    Environments,
+    Datacenters
   },
   reducers: {
     setKey(state, action) {

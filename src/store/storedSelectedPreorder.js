@@ -3,7 +3,7 @@ import {createSlice} from '@reduxjs/toolkit'
 const storedSelectedPreorderSlice = createSlice({
   name: 'storedSelectedPreorder',
   initialState: {
-    regNumber: '',
+    regNumber: '/',
     preorderTypeId: null,
     configurationId: null,
     environmentId: null,

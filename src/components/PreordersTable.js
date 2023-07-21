@@ -23,6 +23,10 @@ export default function PreordersTable() {
   const filtres = useSelector(state => state.filter)
   const countItemsPerPage = useSelector(state => state.memory.paginationPerPage)
   const modalActive = useSelector(state => state.memory.modalActive)
+  const preorderTypes = useSelector(state => state.memory.PreorderTypes)
+  const configurations = useSelector(state => state.memory.Configurations)
+  const environments = useSelector(state => state.memory.Environments)
+  const datacenters = useSelector(state => state.memory.Datacenters)
 
   const columns = [
     {
@@ -44,7 +48,7 @@ export default function PreordersTable() {
         onClick={() => {
           dispatch(setModalActive())
         }}
-      > <Link to={selectedPreorder.regNumber}>{text}</Link></p >,
+      > <Link to={storedSelectedPreorder.regNumber}>{text}</Link></p >,
     },
     {
       title: 'Тип потребности',
@@ -52,13 +56,11 @@ export default function PreordersTable() {
       key: 'preorderTypeId',
       width: 150,
       render: (text) => {
-        if (text === 1) {
-          return (<div>X86</div>)
-        } else if (text === 2) {
-          return (<div>SHD</div>)
-        } else {
-          return (<div>VIRT</div>)
-        }
+        const preorderType = preorderTypes.filter(preorder =>
+          preorder.id === text)
+        return (
+          <div>{preorderType[0].code}</div>
+        )
       },
     },
     {
@@ -67,12 +69,12 @@ export default function PreordersTable() {
       key: 'configurationId',
       width: 200,
       render: (text) => {
-        if (text === 1) {
-          return (<div>X86_R_2S_BIGDATA</div>)
-        } else if (text === 2) {
-          return (<div>X86_R_2S_GP_STANDART</div>)
-        } else if (text === 3) {
-          return (<div>X86_R_2S_KAFKA_L</div>)
+        const configuration = configurations.filter(configuration =>
+          configuration.id === text)
+        if (!(configuration.length === 0)) {
+          return (
+            <div>{configuration[0].code}</div>
+          )
         } else {
           return (<div>Отсутствует</div>)
         }
@@ -83,15 +85,11 @@ export default function PreordersTable() {
       dataIndex: 'environmentId',
       key: 'environmentId',
       render: (text) => {
-        if (text === 1) {
-          return (<div>PROD</div>)
-        } else if (text === 2) {
-          return (<div>TEST</div>)
-        } else if (text === 3) {
-          return (<div>NT</div>)
-        } else {
-          return (<div>DEV</div>)
-        }
+        const environment = environments.filter(environment =>
+          environment.id === text)
+        return (
+          <div>{environment[0].code}</div>
+        )
       }
     },
     {
@@ -100,33 +98,14 @@ export default function PreordersTable() {
       key: 'datacenterIds',
       render: (text) => {
         var result = ''
-        for (var i = 0; i < text.length; i++) {
-          if (text[i] === 1) {
-            result += ' MЦОД'
-          }
-          if (text[i] === 2) {
-            result += ' MЦОД2'
-          }
-          if (text[i] === 3) {
-            result += ' MЦОД3'
-          }
-          if (text[i] === 4) {
-            result += ' MЦОД4'
-          }
-          if (text[i] === 5) {
-            result += ' Сколково'
-          }
-          if (text[i] === 6) {
-            result += ' ШП'
-          }
-          if (text[i] === 7) {
-            result += ' АЦОД'
-          }
-          if (text[i] === 8) {
-            result += ' АЦОД2'
-          }
+        const datacenter = datacenters.filter(datacenter =>
+          text.includes(datacenter.id))
+        for (var i = 0; i < datacenter.length; i++) {
+          result += ` ${datacenter[i].title}`
         }
-        return (result)
+        return (
+          <div>{result}</div>
+        )
       }
     },
     {
@@ -162,6 +141,7 @@ export default function PreordersTable() {
       }
     },
   ]
+  
   const navigate = useNavigate()
   const goBack = () => navigate('/preorders')
 
@@ -212,7 +192,7 @@ export default function PreordersTable() {
       </div>
       <Routes>
         <Route
-          path={selectedPreorder.regNumber}
+          path={storedSelectedPreorder.regNumber}
           element={
             <Modal
               open={modalActive}
