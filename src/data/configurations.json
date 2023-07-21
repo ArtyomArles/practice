@@ -3,18 +3,21 @@
     "id": 1,
     "code": "X86_R_2S_BIGDATA",
     "title": "Rack2cpu BigData (32/512/72000)",
-    "description": "2х-сокетный сервер, монтируемый в стойку, тип BigData (32 CORE 512GB RAM 72TB RAW HDD)"
+    "description": "2х-сокетный сервер, монтируемый в стойку, тип BigData (32 CORE 512GB RAM 72TB RAW HDD)",
+    "key": 1
   },
   {
     "id": 2,
     "code": "X86_R_2S_GP_STANDART",
     "title": "Rack2cpu GreenPlum Standart (36/768/46000)",
-    "description": "2х-сокетный сервер, монтируемый в стойку, тип GP Standart (36 CORE 768GB RAM 46TB NVMe+SSD)"
+    "description": "2х-сокетный сервер, монтируемый в стойку, тип GP Standart (36 CORE 768GB RAM 46TB NVMe+SSD)",
+    "key": 2
   },
   {
     "id": 3,
     "code": "X86_R_2S_KAFKA_L",
     "title": "Rack2cpu Kafka L (16/128/7400)",
-    "description": "2х-сокетный сервер, монтируемый в стойку, тип Kafka L (16 CORE 128GB RAM 7400GB RAW HDD+SSD)"
+    "description": "2х-сокетный сервер, монтируемый в стойку, тип Kafka L (16 CORE 128GB RAM 7400GB RAW HDD+SSD)",
+    "key": 3
   }
 ]

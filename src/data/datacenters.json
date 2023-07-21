@@ -2,49 +2,57 @@
   {
     "id": 1,
     "code": "DC1",
-    "title": "MЦОД",
-    "description": "MЦОД"
+    "title": "МЦОД",
+    "description": "MЦОД",
+    "key": 1
   },
   {
     "id": 2,
     "code": "DC2",
-    "title": "MЦОД2",
-    "description": "MЦОД2"
+    "title": "МЦОД2",
+    "description": "MЦОД2",
+    "key": 2
   },
   {
     "id": 3,
     "code": "DC3",
-    "title": "MЦОД3",
-    "description": "MЦОД3"
+    "title": "МЦОД3",
+    "description": "MЦОД3",
+    "key": 3
   },
   {
     "id": 4,
     "code": "DC4",
-    "title": "MЦОД4",
-    "description": "MЦОД4"
+    "title": "МЦОД4",
+    "description": "MЦОД4",
+    "key": 4
   },
   {
     "id": 5,
     "code": "SK",
     "title": "Сколково",
-    "description": "Сколково"
+    "description": "Сколково",
+    "key": 5
   },
   {
     "id": 6,
     "code": "SH",
     "title": "ШП",
-    "description": "ШП"
+    "description": "ШП",
+    "key": 6
   },
   {
     "id": 7,
     "code": "DC5",
     "title": "АЦОД",
-    "description": "АЦОД"
+    "description": "АЦОД",
+    "key": 7
   },
   {
     "id": 8,
     "code": "DC6",
     "title": "АЦОД2",
-    "description": "АЦОД2"
+    "description": "АЦОД2",
+    "key": 8
   }
 ]

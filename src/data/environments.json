@@ -3,24 +3,28 @@
     "id": 1,
     "code": "PROD",
     "title": "Пром",
-    "description": "Промышленная среда"
+    "description": "Промышленная среда",
+    "key": 1
   },
   {
     "id": 2,
     "code": "TEST",
     "title": "Тест",
-    "description": "Тестовая среда"
+    "description": "Тестовая среда",
+    "key": 2
   },
   {
     "id": 3,
     "code": "NT",
     "title": "НТ",
-    "description": "Среда для нагрузочного тестирования"
+    "description": "Среда для нагрузочного тестирования",
+    "key": 3
   },
   {
     "id": 4,
     "code": "DEV",
     "title": "Дев",
-    "description": "Среда разработки"
+    "description": "Среда разработки",
+    "key": 4
   }
 ]

@@ -1,18 +1,21 @@
-import React from "react";
-import { CgProfile } from "react-icons/cg";
+import React from 'react'
+import {CgProfile} from 'react-icons/cg'
+import {Link} from 'react-router-dom'
+import {useDispatch} from 'react-redux'
+import {setKey} from '../store/memory'
 
-class Profile extends React.Component {
-	render() {
-		return (
-			<div className="profile">
-				<div className="icon">{this.props.icon}</div>
-				{this.props.name}
-			</div>
-		)
-	}
-}
+export default function Profile({name}) {
+  const dispatch = useDispatch()
 
-Profile.defaultProps ={
-	icon: <CgProfile/>
+  return (
+    <Link to=''
+      onClick={() => {
+        dispatch(setKey(['']))
+      }}>
+      <div className="profile">
+        <div className="icon"><CgProfile /></div>
+        {name}
+      </div>
+    </Link>
+  )
 }
-export default Profile
